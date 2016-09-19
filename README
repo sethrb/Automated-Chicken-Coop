@@ -1,0 +1,13 @@
+Readme for Seth's Automated Chicken coop
+This coop is ran by an arduino nano.
+Sensor are:
+1. Water Level Low
+2. Water Level Mid
+3. Water Level High
+4. Water Level waterer Low
+5. Water Main bucket Temp
+6. Waterer Bucket Temp
+7. Light Sensor for determining sun set and rising.
+8. Battery Voltage 
+9. Air Temp in coop
+10. Air Temp in utilties enclosure 
