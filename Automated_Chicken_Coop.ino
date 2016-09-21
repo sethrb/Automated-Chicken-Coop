@@ -16,7 +16,9 @@ byte coopAirTempPin = A4;     //Air Temp in coop
 byte utilitiesAirTempPin = A5;   //Air Temp in utilities enclosure
 //-----------------Sensor Variables--------------------------------------------
 int waterLH, waterLM, waterLL, waterLWL, waterMBtemp, watererBTtemp, lightSensor; 
-int batteryVoltage, coopAirTemp, utilitiesAirTemp;
+int batteryVoltage, coopAirTemp, utilitiesAirTemp, lightThreshhold;
+//other Variables
+byte night = 0; byte morning = 0;
 //-----------------Display Pins------------------------------------------------
 LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
 //d pins 2-10 A pin 0-3,6-7
@@ -33,7 +35,9 @@ LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
  * wiper to LCD VO pin (pin 3)
 */
 void setup() {  // put your setup code here, to run once:
-	waterLH = waterLM = waterLL = waterLWL = waterMBtemp = watererBTtemp = lightSensor = batteryVoltage = coopAirTemp = utilitiesAirTemp = 0;
+	waterLH = waterLM = waterLL = waterLWL = waterMBtemp = watererBTtemp = lightSensor = 0;
+	batteryVoltage = coopAirTemp = utilitiesAirTemp = 0;
+	lightThreshhold = 200; 
 	lcd.begin(16, 2); //Initalize the LCD with 16 col and 2 rows
 	//analog pin setup
 	lightSensor = analogRead(lightSensorPin); waterLM = analogRead(waterLMPin);
@@ -42,6 +46,7 @@ void setup() {  // put your setup code here, to run once:
 	coopAirTemp = analogRead(coopAirTempPin); utilitiesAirTemp = analogRead(utilitiesAirTempPin);	
 	//digital pin setup
 	pinMode(waterLLPin,INPUT); pinMode(waterLWLPin, INPUT);
+	pinMode(8, OUTPUT);
 	Serial.begin(19200);
 	while (!Serial);
  // flashLED(red, 6, 25);
@@ -51,10 +56,25 @@ void setup() {  // put your setup code here, to run once:
 }
 
 void loop() { // put your main code here, to run repeatedly:
-	//get light sensor value
+	int holdlightsensor;
 	lightSensor = analogRead(lightSensorPin);
+	if (lightSensor < lightThreshhold && night != 0) {
+		delay(1000);
+		lightSensor = analogRead(lightSensorPin);
+		if (lightSensor < lightThreshhold){
+			lightSensor = analogRead(lightSensorPin);
+			night = currentTimeMinutes();
+			morning = night + 720;
+		}
+	}
+	
+	if (currentTimeMinutes() >= morning) {
+		digitalWrite(8, HIGH);
+	}
+	
+	
 	// print out the value you read:
-	Serial.println(lightSensor);
+	Serial.println(lightSensor);	
 	//figure out math for when to turn on lights 
 	//check arduino internal time for refrence
 	//get water bucket levels
@@ -78,7 +98,30 @@ void flashLED(int colorPin, int times, int timeDelay)
     }
 }
 //---------------------------Time till Daylight--------------------------------
+//----------set next lights on time.
+//int lightOn()
+//{
+//	lightSensor = analogRead(lightSensorPin);
+	
+	
+//}
 
+
+//not using a clock to provide info for now.
+/* psudo code
+see when it's dark 
+wait twelve hours and then turn on lights
+
+*/
+//-----------currentTimeMinutes
+int currentTimeMinutes()
+{
+	unsigned long time = 0;
+	int minutes = 0;
+	time = millis();
+	minutes = time / 60000;
+	return minutes;
+}
 //      Serial.print("Writing to test.txt...");
 //      LogFile.print(tempC); LogFile.print(","); 
 //      Serial.println("done.");
