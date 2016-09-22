@@ -14,6 +14,9 @@ byte lightSensorPin = A2;   //Light Sensor for determining sun set and rising.
 byte batteryVoltagePin = A3;  //Battery Voltage 
 byte coopAirTempPin = A4;     //Air Temp in coop
 byte utilitiesAirTempPin = A5;   //Air Temp in utilities enclosure
+//-----------------control Pins------------------------------------------------
+byte lightRelay = 8; // Relay for the lights
+
 //-----------------Sensor Variables--------------------------------------------
 int waterLH, waterLM, waterLL, waterLWL, waterMBtemp, watererBTtemp, lightSensor; 
 int batteryVoltage, coopAirTemp, utilitiesAirTemp, lightThreshhold;
@@ -21,24 +24,18 @@ int batteryVoltage, coopAirTemp, utilitiesAirTemp, lightThreshhold;
 byte night = 0; byte morning = 0;
 //-----------------Display Pins------------------------------------------------
 LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
-//d pins 2-10 A pin 0-3,6-7
-/* 
- * LCD RS pin to digital pin 12
- * LCD Enable pin to digital pin 11
- * LCD D4 pin to digital pin 5
- * LCD D5 pin to digital pin 4
- * LCD D6 pin to digital pin 3
- * LCD D7 pin to digital pin 2
- * LCD R/W pin to ground
- * 10K resistor:
- * ends to +5V and ground
- * wiper to LCD VO pin (pin 3)
-*/
+byte smiley[8] = {
+  B00000, B10001, B00000, B00000, B10001, B01110, B00000,};
+byte light[8] = {
+  B00100, B10101, B01110, B11111, B01110, B10101, B00100,};
+
 void setup() {  // put your setup code here, to run once:
 	waterLH = waterLM = waterLL = waterLWL = waterMBtemp = watererBTtemp = lightSensor = 0;
 	batteryVoltage = coopAirTemp = utilitiesAirTemp = 0;
 	lightThreshhold = 200; 
 	lcd.begin(16, 2); //Initalize the LCD with 16 col and 2 rows
+  lcd.createChar(0, smiley);
+  lcd.createChar(1, light);
 	//analog pin setup
 	lightSensor = analogRead(lightSensorPin); waterLM = analogRead(waterLMPin);
 	waterLH = analogRead(waterLHPin); waterMBtemp = analogRead(waterMBtempPin);
@@ -46,7 +43,7 @@ void setup() {  // put your setup code here, to run once:
 	coopAirTemp = analogRead(coopAirTempPin); utilitiesAirTemp = analogRead(utilitiesAirTempPin);	
 	//digital pin setup
 	pinMode(waterLLPin,INPUT); pinMode(waterLWLPin, INPUT);
-	pinMode(8, OUTPUT);
+	pinMode(lightRelay, OUTPUT);
 	Serial.begin(19200);
 	while (!Serial);
  // flashLED(red, 6, 25);
@@ -58,7 +55,8 @@ void setup() {  // put your setup code here, to run once:
 void loop() { // put your main code here, to run repeatedly:
 	int holdlightsensor;
 	lightSensor = analogRead(lightSensorPin);
-	if (lightSensor < lightThreshhold && night != 0) {
+
+	/*if (lightSensor < lightThreshhold && night != 0) {
 		delay(1000);
 		lightSensor = analogRead(lightSensorPin);
 		if (lightSensor < lightThreshhold){
@@ -71,8 +69,14 @@ void loop() { // put your main code here, to run repeatedly:
 	if (currentTimeMinutes() >= morning) {
 		digitalWrite(8, HIGH);
 	}
-	
-	
+	*/
+	if (lightSensor < lightThreshhold){
+      digitalWrite(lightRelay, HIGH);
+      delay(200);
+	}
+  else {
+      digitalWrite(lightRelay, LOW);
+  }
 	// print out the value you read:
 	Serial.println(lightSensor);	
 	//figure out math for when to turn on lights 
@@ -83,9 +87,20 @@ void loop() { // put your main code here, to run repeatedly:
 	//get air temp
 	//get battery levels
 	//Display info on LCD
+  lcd.clear();
+  lcd.write(byte(1));
+  lcd.write(" = ");
+  lcd.print(lightSensor);
+  lcd.setCursor(0,1); //col,row
+  lcd.write(byte(0));
+	delay(200);
 
 }
 //**********************************Functions********************************//
+//----------------------------------Display----------------------------------//
+
+
+
 void flashLED(int colorPin, int times, int timeDelay)
 { //flashLED(red, 6, 25)
   byte hold = 0;
