@@ -1,0 +1,29 @@
+Part One, Main Features
+  //To be typed in
+Part Two, System Instruction
+  //to be typed in
+Part Three, Installation and application
+  //to be typed in
+Part four, Operation Instructions
+  //to be typed in
+  
+Part Five, Working Mode Settings
+  1. Setting methods:
+    to press the power swtich for 5 seconds, the MODE will show LED flashing number, to shop pressing, to press each time there will be a     number, till thenumber you needed, and the LED number stop flashing, setting finished. Every time your press it, the LED is No. Bright.
+  2. Only Light control MOde, "0"
+    When ther is no sunshine the light grade comes down to starting point, the controller will switch on the load in 10 min after you ahve confirmed the signal. When there is sunshine, the light grade comes up to stopping point, The controller will switch off the load in 10 min after have confimed the signal.
+  3. Light Control+time delay mode ("1"-"15")
+    Starting process is the same as the above mentioned, when the load works till the fixed time it will be switched off. Time setting, please refer the following table. Light control enjoys priority
+  4. General Control Mode "16"
+    The Mode cancel the light control, time contorl function, output delay and related function, to keep all the other functions, to take as a common general use controller.
+  5. Setting ways "17" 
+    To use for system setting, it is the same aws the only light control mode, to cancel the 10 min delay function, all the others are the same. When there is sunshine, the load is switched on, when there is no sunshine, the load is switched off, and it is convenient to check the system when doing installation and setting.
+  6. Output mode Instruction
+    When the LED shows the setting mode figure, is "1"-"15", it is only DC output
+
+Part Six, Working MOde Setting Table
+  //to be typed in
+Part Seven, Some Common Breakdown phenomenon and Disposal Methods
+  //to be typed in
+Part Eight, Tech Data
+  //to be typed in
