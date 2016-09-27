@@ -5,7 +5,12 @@ Part Two, System Instruction
 Part Three, Installation and application
   //to be typed in
 Part four, Operation Instructions
-  //to be typed in
+  1. Charge and over voltage signal:
+    When it is well connected, and there is sunshine to PV, the green LED-1 is always bright, to show the system is normal; When the LED-1 is quick flashing, it is over voltage, please refer to Part Eight; To use PWM mode to charge the battery, if it is over dischage, it need to increase the voltage to increase charge voltage, and to keep it for 10min,. then it comes to direct charge coltage, to keep it for 10 min. to activate the battery and to avoid fulguration. It will come down to float charge coltage, and keep it. If ther is no over discharge, there will be on increase charge mode to avoid the battery lose wetter. All these auto control can assure the battery to get its best charging effect and prolong its life span. 
+  2. Battery stage signal
+    When the battery voltage is normal, Green LED-2 is always flashing; when it is under voltage, the LED-2 is red, then the controller will switch off the load automatically, it needs to be rechared. When it comes to nromal voltage, it will auto work again with Green LED-2.
+  3. Load signal 
+  When the load is on, the load LED-3 is always bright, if the load current is 1.25 times by contoller rated current for 60 seconds, or he load current is 1.5 times by controller rated current for 5 seconds, LED-3 is red with slow flashing, it is over load, controller will switch off output at once with LED-# red and quick flashing. To check the load connection, to disconnect the short circuit part, to press the button one time, it will start to work again 30 in seconds later, or to work again next day normally. 
   
 Part Five, Working Mode Settings
   1. Setting methods:
