@@ -1,5 +1,13 @@
 Part One, Main Features
-  //To be typed in
+  1. intelligent control with single chip and professional software.
+  2. with precise battery discharge control by use of battery discharge features. Different discharge rated with different final voltage.
+  3. with over charge, over discharge, short circut, over load, wrong connection auto protection. When the above mention fuctions work, it won't destroy any components of the controler, it won't burn the fuse
+  4. to use series connection PWM ciruit, it is 3%0^% more effective than non-PWM ciruit when charging. to use float charging control mode to prolong the system life span; with high precision temperature compensation function.
+  5 with LED to show the battery state
+  6. to use industrial grade chip, it can work under evironment such as cold, high temperature, humid, At the same it, it uses a crystal oscillator timing control, the timing control accurately.
+  7 to use LED display and settings, one button ca ncarry out all settings.
+  8 to use FLASH memory to keep record of all the working control point, to make the settings digitalized. 
+  9 with DC discharge or IHZ strobe flash discharge mode which is especially suitable for traffic light control, etc.
 Part Two, System Instruction
   //to be typed in
 Part Three, Installation and application
