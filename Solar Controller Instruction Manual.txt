@@ -9,7 +9,7 @@ Part One, Main Features
   8 to use FLASH memory to keep record of all the working control point, to make the settings digitalized. 
   9 with DC discharge or IHZ strobe flash discharge mode which is especially suitable for traffic light control, etc.
 Part Two, System Instruction
-  //to be typed in
+  The solar Controller is desighned for solar DC power supply system, DC solar Street light system, to use professional intelligent chip to control it. To use one button light touch switchto finish all the manipulation and settings. The controller has many protective functions , for example, short circuit, overload, wrong connection, over charge, over discharge, auto cut, quto recovery etc. with detailed charging battery state, load and breakdown signal LEDs. It can high precisely control cos of the chip can get battery data such as voltage, discharge current, environment temperature etc. It uses PWM battery charge mode, to assure the battery at its best state and prolong its life span. It vhas many working modes , discharge choices, to meet differet user needs.
 Part Three, Installation and application
   //to be typed in
 Part four, Operation Instructions
