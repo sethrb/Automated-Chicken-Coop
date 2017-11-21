@@ -1,4 +1,7 @@
 Part One, Main Features
+  1. intelligent control with single chip and professional software.
+  2. with precise battery discharge control by use of battery discharge features. Different discharge rated with different final voltage.
+  3. with over charge, over discharge, short circuit, over load, wrong connection auto protection. When the above mention functions work, it won't destroy any components of the controller , it won't burn the fuse.
   //To be typed in
 Part Two, System Instruction
   //to be typed in
